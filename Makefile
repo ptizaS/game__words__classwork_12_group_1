@@ -44,7 +44,7 @@ init-config-i-homework:
 .PHONY: homework-i-run
 # Run homework.
 homework-i-run:
-	@python main.py
+	@python manage.py runserver
 
 .PHONY: homework-i-purge
 homework-i-purge:

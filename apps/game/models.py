@@ -18,6 +18,11 @@ class Word(models.Model):
         if self.word.find("ь") != -1 or self.word.find("ъ") != -1 or self.word.find("ы") != -1:
             raise ValidationError('Enter right word without ь or ъ or ы!')
         last_word = Word.objects.order_by("-pk").first()
-        if last_word is not None:
-            if last_word.word[-1] != self.word[0]:
-                raise ValidationError(f'Enter word begin with{last_word.word[-1]}')
+        if last_word is not None and last_word.word[-1] != self.word[0]:
+            raise ValidationError(f'Enter word begin with "{last_word.word[-1]}"')
+
+
+class Room(models.Model):
+    room_number = models.SmallIntegerField(max_length=100, unique=True)
+    main_player = models.CharField(max_length=100, unique=True)
+    other_player = models.SmallIntegerField(max_length=100, unique=True)
